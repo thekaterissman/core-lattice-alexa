@@ -1,0 +1,83 @@
+:root {
+  --bg: #0b1020;
+  --panel: #131a30;
+  --ink: #eaf0ff;
+  --dim: #8b96b8;
+  --alexa: #31c4f3;
+  --alexa-deep: #1a6fd4;
+  --user-bubble: #1f6feb;
+  --ai-bubble: #1a2340;
+  --accent: #7c5cff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 50% -10%, #16204a 0%, var(--bg) 60%);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+#app { max-width: 720px; margin: 0 auto; padding: 16px; display: flex; flex-direction: column; min-height: 100vh; }
+
+header { display: flex; justify-content: space-between; align-items: center; padding: 8px 4px 16px; }
+.brand { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+.brand em { font-style: normal; color: var(--dim); font-weight: 400; font-size: 0.8rem; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--alexa); box-shadow: 0 0 12px var(--alexa); }
+.hackathon-tag { font-size: 0.7rem; color: var(--dim); border: 1px solid #2a3560; padding: 4px 10px; border-radius: 20px; }
+
+/* Alexa ring */
+#ring-wrap { text-align: center; padding: 12px 0 4px; }
+#ring {
+  width: 110px; height: 110px; margin: 0 auto; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: conic-gradient(from 0deg, var(--alexa), var(--alexa-deep), var(--accent), var(--alexa));
+  transition: box-shadow .3s, transform .3s;
+}
+#ring .core { width: 88px; height: 88px; border-radius: 50%; background: #0b1020; }
+#ring.idle { box-shadow: 0 0 24px rgba(49,196,243,.25); animation: slowspin 12s linear infinite; }
+#ring.listening { box-shadow: 0 0 44px rgba(49,196,243,.8); animation: pulse 1.2s ease-in-out infinite; }
+#ring.thinking { box-shadow: 0 0 34px rgba(124,92,255,.7); animation: slowspin 2s linear infinite; }
+#ring.speaking { box-shadow: 0 0 44px rgba(49,196,243,.8); animation: pulse .8s ease-in-out infinite; }
+@keyframes slowspin { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+#status-line { margin-top: 10px; color: var(--dim); font-size: 0.85rem; min-height: 1.2em; }
+
+/* Chat */
+#chat { flex: 1; overflow-y: auto; padding: 12px 4px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 16px; line-height: 1.45; white-space: pre-wrap; word-wrap: break-word; font-size: 0.95rem; }
+.msg.user { align-self: flex-end; background: var(--user-bubble); border-bottom-right-radius: 4px; }
+.msg.ai { align-self: flex-start; background: var(--ai-bubble); border: 1px solid #26305a; border-bottom-left-radius: 4px; }
+.msg.ai .intent { display: block; margin-top: 8px; font-size: 0.68rem; color: var(--dim); }
+.msg.typing { color: var(--dim); font-style: italic; }
+
+/* Chips */
+#chips { display: flex; gap: 8px; flex-wrap: wrap; padding: 8px 4px; }
+.chip {
+  background: transparent; color: var(--alexa); border: 1px solid var(--alexa);
+  border-radius: 20px; padding: 6px 14px; font-size: 0.82rem; cursor: pointer;
+}
+.chip:hover { background: rgba(49,196,243,.12); }
+
+/* Composer */
+#composer { display: flex; gap: 8px; padding: 12px 0 4px; }
+#composer input {
+  flex: 1; background: var(--panel); border: 1px solid #2a3560; color: var(--ink);
+  border-radius: 24px; padding: 12px 18px; font-size: 0.95rem; outline: none;
+}
+#composer input:focus { border-color: var(--alexa); }
+#composer button {
+  width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer; font-size: 1.2rem;
+  background: var(--panel); border: 1px solid #2a3560; color: var(--ink);
+}
+#mic-btn.live { background: var(--alexa); border-color: var(--alexa); color: #04263a; }
+#send-btn { background: var(--alexa); border-color: var(--alexa); color: #04263a; }
+
+#sim-note { text-align: center; color: var(--dim); font-size: 0.68rem; padding: 10px 20px 4px; line-height: 1.4; }
+
+@media (max-width: 560px) {
+  .hackathon-tag { display: none; }
+  .msg { max-width: 92%; }
+}

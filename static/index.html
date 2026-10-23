@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Core Lattice — Alexa+ Demo</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Core Lattice <em>via simulated Alexa+</em></span>
+    </div>
+    <div class="hackathon-tag">Amazon Developer Hackathon 2026 — demo build</div>
+  </header>
+
+  <!-- Alexa-style status ring -->
+  <div id="ring-wrap">
+    <div id="ring" class="idle"><div class="core"></div></div>
+    <div id="status-line">Tap the mic or type below</div>
+  </div>
+
+  <!-- Conversation -->
+  <main id="chat" aria-live="polite"></main>
+
+  <!-- Suggestion chips -->
+  <div id="chips"></div>
+
+  <!-- Input bar -->
+  <footer id="composer">
+    <button id="mic-btn" title="Talk" aria-label="Voice input">🎙</button>
+    <input id="input" type="text" placeholder='Try: "run the demo"' autocomplete="off" />
+    <button id="send-btn" title="Send" aria-label="Send">➤</button>
+  </footer>
+
+  <div id="sim-note">
+    Simulated Alexa+ experience in a web app — allowed under the official hackathon rules
+    (alternate path, exempt from the Alexa runtime technology hook).
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
